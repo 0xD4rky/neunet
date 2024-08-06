@@ -1,49 +1,45 @@
-#include <iostream>
 #include <vector>
-#include <stdlib.h>
+#include <cmath>
+#include <cstdlib>
+#include <iostream>
 
-class Neuron{
+class Neuron {
+public:
+    Neuron(int numInputs);
+    double activate(const std::vector<double>& inputs);
+    void setWeights(const std::vector<double>& newWeights);
+    std::vector<double> getWeights() const;
 
-    /*
-    1. set weights
-    2. set biases
-    3. set activation function
-    */
-    public:
-        Neuron(int number_of_inputs);
-        
-        void set_weights(const std::vector<double>& new_weights);
-        double activate(const std::vector<double>& inputs);
-        std::vector<double> get_weights() const;
-
-    private:
-        std::vector<double> weights;
-        double bias;
-
+private:
+    double sigmoid(double x) const;
+    std::vector<double> weights;
+    double bias;
 };
 
-Neuron::Neuron (int num_of_inputs){
-    for(int i=0;i< num_of_inputs;i++){
-        weights.push_back(((double) rand())/ (RAND_MAX));
+Neuron::Neuron(int numInputs) {
+    std::cout << "Creating Neuron with " << numInputs << " inputs.\n";
+    for (int i = 0; i < numInputs; ++i) {
+        weights.push_back(((double) rand() / (RAND_MAX))); // Random weight initialization
     }
-    bias = ((double)rand())/RAND_MAX;
-    // w&b : [0,1]
+    bias = ((double) rand() / (RAND_MAX)); // Random bias initialization
 }
 
-double Neuron::activate(const std::vector<double>& inputs){
-    double activation = 0;
-    for(int i=0;i<weights.size();i++){
-        activation = weights[i]*inputs[i];
+double Neuron::activate(const std::vector<double>& inputs) {
+    double activation = bias;
+    for (size_t i = 0; i < weights.size(); ++i) {
+        activation += weights[i] * inputs[i];
     }
-    activation += bias;
-    activation = 1.0/(1.0  +exp(-activation));
-    return activation;
+    return sigmoid(activation);
 }
 
-void Neuron::set_weights(const std::vector<double>& newWeights) {
+double Neuron::sigmoid(double x) const {
+    return 1.0 / (1.0 + std::exp(-x));
+}
+
+void Neuron::setWeights(const std::vector<double>& newWeights) {
     weights = newWeights;
 }
 
-std::vector<double> Neuron::get_weights() const {
+std::vector<double> Neuron::getWeights() const {
     return weights;
 }

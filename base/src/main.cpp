@@ -1,12 +1,17 @@
 #include <iostream>
-#include <vector>
 #include "network.cpp"
 
-int main(){
-    std::vector<int> layers = {2,1,3};
-    Network net(layers); // ini all the networks with neurons
-
-    std::vector<double> inputs = {0.5,0.8};
-    std::vector<double> outputs = net.predict(inputs);
-    std::cout << "predicted output : " << outputs[0] << std::endl;
+int main() {
+    std::vector<int> layers = {3, 5, 2}; 
+    Network network(layers);
+    
+    std::vector<double> inputs = {1.0, 0.5, -1.5}; 
+    std::vector<double> outputs = network.predict(inputs);
+    
+    std::cout << "Network output:\n";
+    for (double output : outputs) {
+        std::cout << output << "\n";
+    }
+    
+    return 0;
 }
