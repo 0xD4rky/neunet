@@ -2,32 +2,28 @@
 
 #include <vector>
 
-using namespace std;
+enum Datatype{
+    TRAIN,
+    TEST
+};
+// for accessing the data using test or train
 
-enum Datatype {
-	TRAIN,
-	TEST
+class Dataset{
+    public:
+        Dataset(string filename);
+        ~Dataset ();
+
+        const std::vector<const std::vector<double>*>& In(Datatype d) const;
+        const std::vector<const std::vector<double>*>& Out(Datatype d) const; //accessors pointing to vectors
+        void split(double ptrain);
+
+    private:
+        std::vector<std::vector<double>> ins;
+        std::vector<std::vector<double>> outs;
+        std::vector<const std::vector<double>*> train_ins;
+        std::vector<const std::vector<double>*> train_outs;
+        std::vector<const std::vector<double>*> test_ins;
+        std::vector<const std::vector<double>*> test_outs;
+
 };
 
-class Dataset
-{
-public:
-	Dataset(string filename);
-	~Dataset();
-
-	const vector<const vector<double>*>& getIns(Datatype d) const;
-
-	const vector<const vector<double>*>& getOuts(Datatype d) const;
-
-	void split(double ptrain);
-
-private:
-	vector<vector<double>> _ins;
-	vector<vector<double>> _outs;
-
-	vector<const vector<double>*> _train_ins;
-	vector<const vector<double>*> _train_outs;
-
-	vector<const vector<double>*> _test_ins;
-	vector<const vector<double>*> _test_outs;
-};
