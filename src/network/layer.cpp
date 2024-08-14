@@ -26,6 +26,17 @@ void Layer::compute_gradient(const std::vector<double>& delta_next_layer){
     }
 }
 
+void Layer::update_weights(double learning_rate){
+    for (size_t i = 0; i < neurons.size(); i ++){
+        auto&  weights = neurons[i].get_weights();
+        std::vector<double> delta_weights(weights.size());
+        for (size_t j = 0; j < delta_weights.size(); ++j){
+            delta_weights[j] = deltas[j]*activations[j];
+        }
+        neurons[i].update(delta_weights,deltas[i],learning_rate);
+    }
+}
+
 std::vector<Neuron>& Layer::get_neurons(){
     return neurons;
 }
