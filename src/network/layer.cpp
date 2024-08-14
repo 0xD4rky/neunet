@@ -25,3 +25,17 @@ void Layer::compute_gradient(const std::vector<double>& delta_next_layer){
         deltas[i] = sigmoid_derivative(activation) * delta_next_layer[i];
     }
 }
+
+std::vector<Neuron>& Layer::get_neurons(){
+    return neurons;
+}
+
+const std::vector<double>& Layer::get_activations() const{
+    return activations;
+}
+
+const std::vector<double>& Layer::get_deltas() const{
+    return deltas;
+}
+
+
