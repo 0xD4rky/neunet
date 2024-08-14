@@ -1,5 +1,5 @@
-#ifndef LAYER.H
-#define LAYER.H
+#ifndef LAYER_H
+#define LAYER_H
 
 #include <vector>
 #include "neuron.h"
