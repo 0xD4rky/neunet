@@ -21,3 +21,19 @@ std::vector<double> Net::forward(const std::vector<double>& inputs){
     return activations;
 }
 
+void Net::train(const std::vector<std::vector<double>>& data,
+                const std::vector<int>& labels,
+                int epochs, double learning_rate){
+    
+
+    for (int epoch = 0; epoch < epochs; epoch ++){
+        double epoch_loss = 0.0;
+        for (size_t i = 0; i < data.size(); i ++){
+            auto output = forward(data[i]);
+            std::vector<double> target = {static_cast<double>(labels[i])};
+            epoch_loss += calculate_loss(output,target);
+            backpropagate(target);
+        }
+        std::cout << "Epoch " << epoch + 1 << "/" << epochs << " - Loss: " << epoch_loss / data.size() << std::endl;
+    }
+}
