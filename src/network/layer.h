@@ -11,9 +11,9 @@ class Layer{
         void compute_gradient(const std::vector<double>& delta_next_layer);
         void update_weights(double learning_rate);
     
-        std::vector<Neuron>& get_neurons;
-        const std::vector<double>& get_activations;
-        const std::vector<double>& get_deltas;
+        std::vector<Neuron>& get_neurons();
+        const std::vector<double>& get_activations() const;
+        const std::vector<double>& get_deltas() const;
 
     private:
         std::vector<Neuron> neurons;
