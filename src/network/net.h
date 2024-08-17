@@ -13,8 +13,11 @@ class Net{
                const std::vector<int>& labels, 
                int epochs, double learning_rate);
         double predict(const std::vector<double>& inputs);
-    
-    
+
+    private:
+        std::vector<Layer> layers;
+        void backpropagate(const std::vector<double>& expected);
+        double calculate_loss(const std::vector<double>& output, const std::vector<double>& target);
 
 };
 
