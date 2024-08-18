@@ -49,6 +49,14 @@ void Net::backpropagate(const std::vector<double>& expected){
     
     for(int i = layers.size() - 2; i >= 0 ; --i){
         std::vector<double> next_layer_deltas(layers[i+1].get_neurons().size());
-        for (size_t)
+        for (size_t j = 0; j < next_layer_deltas.size(); ++j)
+        {
+            next_layer_deltas[j] = 0.0;
+            for(size_t k =0 ; k <layers[i+1].get_neurons().size(); ++k){
+                next_layer_deltas[j] += layers[i+1].get_neurons()[k].get_weights()[j] * layers[i+1].get_deltas()[k];
+            }
+        }
+        layers[i].compute_gradient(next_layer_deltas);
     }
 }
+
