@@ -60,7 +60,7 @@ void Net::backpropagate(const std::vector<double>& expected){
     }
 }
 
-double Net::calculate_loss(const std::vector<double>& output, const std::vector<double>& target){
+double Net::calculate_loss(const std::vector<double>& output, const std::vector<double>& target) const{
     double loss = 0.0;
     for(size_t i = 0; i < output.size(); i ++){
         loss += std::pow((output[i] - target[i]),2);
