@@ -37,3 +37,18 @@ void Net::train(const std::vector<std::vector<double>>& data,
         std::cout << "Epoch " << epoch + 1 << "/" << epochs << " - Loss: " << epoch_loss / data.size() << std::endl;
     }
 }
+
+void Net::backpropagate(const std::vector<double>& expected){
+    // computing gradients for the output layer
+    Layer& output_layer = layers.back();
+    std::vector<double> output_deltas(output_layer.get_activations().size());
+    for (size_t i = 0; i < output_deltas.size(); i ++){
+        output_deltas[i] = output_layer.get_activations()[i] - expected[i];
+    }
+    output_layer.compute_gradient(output_deltas);\
+    
+    for(int i = layers.size() - 2; i >= 0 ; --i){
+        std::vector<double> next_layer_deltas(layers[i+1].get_neurons().size());
+        for (size_t)
+    }
+}
