@@ -60,3 +60,16 @@ void Net::backpropagate(const std::vector<double>& expected){
     }
 }
 
+double Net::calculate_loss(const std::vector<double>& output, const std::vector<double>& target){
+    double loss = 0.0;
+    for(size_t i = 0; i < output.size(); i ++){
+        loss += std::pow((output[i] - target[i]),2);
+    }
+    return loss/output.size();
+}
+
+double Net::predict(const std::vector<double>& inputs){
+    auto output = forward(inputs);
+    return output.front();
+    // since this is binary classification, return the first output only
+}
