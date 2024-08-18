@@ -7,7 +7,7 @@
 class Net{
 
     public:
-        Net(const std::vector<int>& layers);
+        Net(const std::vector<int>& layer_sizes);
         std::vector<double> forward(const std::vector<double>& inputs);
         void train(const std::vector<std::vector<double>>& data, 
                const std::vector<int>& labels, 
@@ -17,7 +17,7 @@ class Net{
     private:
         std::vector<Layer> layers;
         void backpropagate(const std::vector<double>& expected);
-        double calculate_loss(const std::vector<double>& output, const std::vector<double>& target);
+        double calculate_loss(const std::vector<double>& output, const std::vector<double>& target) const;
 
 };
 
