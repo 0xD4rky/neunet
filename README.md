@@ -21,3 +21,19 @@ neunet/
     ├── data.txt
     └── Build.bat
 ```
+
+## Prerequisites
+
+- **C++ Compiler**: You need a C++ compiler like `g++` to compile the project. You can install it as part of the **MinGW** toolset, available on Windows.
+- **Command Prompt (cmd)**: The project is set up to run in a Windows environment using `cmd`.
+
+## Setup and Compilation
+
+### Step 1: Install MinGW (if not already installed)
+If you do not have `g++` installed on your system, follow these steps:
+1. Download the **MinGW Installer** from [here](https://sourceforge.net/projects/mingw/).
+2. During installation, select the **g++ compiler**.
+3. Add the `bin` directory of your MinGW installation to your system’s `PATH` environment variable.
+
+### Step 2: Prepare the Dataset
+You will need a dataset file (`data.txt`) that contains rows of data, with the last value of each row being the label. For example:
