@@ -36,4 +36,15 @@ If you do not have `g++` installed on your system, follow these steps:
 3. Add the `bin` directory of your MinGW installation to your system’s `PATH` environment variable.
 
 ### Step 2: Prepare the Dataset
-You will need a dataset file (`data.txt`) that contains rows of data, with the last value of each row being the label. For example:
+You will need a dataset file (`data.txt`) that contains rows of data, with the last value of each row being the label.
+
+Place the `data.txt` file in the root of the project directory.
+
+### Step 3: Compile the Project
+
+1. Open the **Command Prompt**.
+2. Navigate to the `src/` directory of your project:
+
+   ```bash
+   cd path\to\your\project\src```
+4. Run the provided `Build.bat` script to compile the project.
