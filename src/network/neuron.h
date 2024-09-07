@@ -2,7 +2,7 @@
 #define NEURON_H
 
 #include <vector>
-#include "../misc/functions.h"
+#include "functions.h"
 
 class Neuron{
     public:
