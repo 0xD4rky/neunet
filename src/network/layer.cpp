@@ -5,7 +5,7 @@
 #include "layer.h"
 
 Layer::Layer(int no_neurons,int input_size){
-    for(size_t i = 0; i < no_neurons; i ++){
+    for(int i = 0; i < no_neurons; i ++){
         neurons.push_back(Neuron(input_size));
     }
 }
