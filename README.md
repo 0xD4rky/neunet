@@ -1,13 +1,23 @@
-# neunet
+# Neural Network in C++ from Scratch
 
+This project implements a basic feedforward neural network in C++ using custom layers, neurons, and backpropagation. The network can be trained on a binary classification dataset. 
 
-## Graph Based Appproach:
+The project is organized as follows:
 
-* The `mlp` folder contains a basic implementation of MLP using cpp.
-  
-![images](https://github.com/user-attachments/assets/a7abe668-8dd6-46af-9c40-13792e16d2d6)
-
-* Sample output of `mlp`
-
-![mlp](https://github.com/user-attachments/assets/49a055b6-a34a-4430-9651-948af99355a3)
-
+```
+neunet/ 
+  ├── src/
+    │ ├── network/
+      │ │ ├── net.h
+      │ │ ├── net.cpp
+      │ │ ├── layer.h
+      │ │ ├── layer.cpp
+      │ │ ├── neuron.h
+      │ │ ├── neuron.cpp
+    │ ├── optimizer/
+      │ │ ├── utils.h
+      │ │ ├── utils.cpp
+    │ └── main.cpp
+    ├── data.txt
+    └── Build.bat
+```
