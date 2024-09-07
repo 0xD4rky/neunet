@@ -4,7 +4,6 @@
 #include <cstdlib>
 #include <cmath>
 
-#include "utils.h"
 #include <fstream>
 #include <sstream>
 
