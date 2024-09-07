@@ -48,3 +48,60 @@ Place the `data.txt` file in the root of the project directory.
    ```bash
    cd path\to\your\project\src```
 4. Run the provided `Build.bat` script to compile the project.
+
+If the build is successful, you will see a neural_net.exe executable generated in the src/ folder. 
+
+## Running the Program
+
+Once the project has been compiled, follow these steps to run the neural network:
+
+### Step 1: Run the Executable
+
+In the Command Prompt, ensure you are in the `src/` directory. Run the following command:
+
+```bash
+neural_net.exe
+```
+
+### Step 2: Input the Neural Network Configuration
+
+The program will prompt you to enter various parameters for configuring the neural network:
+
+* Number of Layers: Enter the total number of layers (excluding the input layer).
+* Neurons per Layer: For each layer, input the number of neurons.
+* Learning Rate: Input the learning rate (e.g., 0.01).
+* Training Epochs: Input the number of epochs to train the network.
+
+### Step 3: Provide a Test Data Point
+
+After training, the program will prompt you to enter a test data point (space-separated values). The test input should match the dimensionality of the input layer.\
+
+```
+Enter a test data point [space-separated]: 1.5 2.3 4.0
+```
+
+## Project Structure:
+
+* main.cpp: The entry point of the program. It initializes the neural network, loads the dataset, and manages training and prediction.
+* network/: Contains the core implementation of the neural network.
+* net.cpp: Manages the entire network, layers, and training.
+* layer.cpp: Defines the layer class, which contains neurons and performs forward and backward propagation.
+* neuron.cpp: Defines the neuron class, which holds weights, biases, and activation functions.
+* optimizer/utils.cpp: Provides utility functions for loading the dataset and performing weight updates.
+
+## Example Usage:
+
+```
+Enter the layers in the neural network: 3
+Enter the number of neurons in layer 1: 4
+Enter the number of neurons in layer 2: 5
+Enter the number of neurons in layer 3: 1
+Enter the learning rate: 0.01
+Enter the number of training epochs: 1000
+Training the network...
+Enter a test data point [space-separated]: 2.0 1.5 3.0
+Predicted output: 0.85
+```
+
+## License
+This project is licensed under the MIT License. You are free to modify and distribute it as you wish.
