@@ -1,6 +1,4 @@
-#include "network/neuron.h"
-#include "misc/functions.h"
-#include "dataset/data.h"
+#include "network/net.h"
 #include "optimizer/utils.h"
 
 #include <ctime>
@@ -38,7 +36,19 @@ int main(){
 
     // Load the dataset
     std::string filename = "data.txt";
-    auto [data, labels] = load_dataset(filename);
+    std::pair<std::vector<std::vector<double>>, std::vector<int>> dataset = load_dataset(filename);
+    std::vector<std::vector<double>> data = dataset.first;
+    std::vector<int> labels = dataset.second;
 
-    
+    Net nn(layers);
+    nn.train(data,labels,epochs,learning_rate);
+
+    std::cout << "Enter a test data point [space-separated]";
+    std::vector<double> test_input(layers.front());
+    for (double &val : test_input){
+        std::cin >> val;
+    }
+    double prediction = nn.predict(test_input);
+    std::cout << "Predicted output " << prediction << std::endl;
+    return 0;
 }
