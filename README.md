@@ -89,7 +89,7 @@ Enter a test data point [space-separated]: 1.5 2.3 4.0
 * neuron.cpp: Defines the neuron class, which holds weights, biases, and activation functions.
 * optimizer/utils.cpp: Provides utility functions for loading the dataset and performing weight updates.
 
-## Example Usage:
+## Sample Usage:
 
 ```
 Enter the layers in the neural network: 3
