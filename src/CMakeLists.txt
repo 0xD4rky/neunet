@@ -18,3 +18,29 @@ set(SOURCES
 )
 
 
+add_executable(neural_net ${SOURCES})
+
+# Custom target for building
+add_custom_target(build_all ALL
+    COMMAND ${CMAKE_COMMAND} --build ${CMAKE_BINARY_DIR}
+    COMMENT "Building the neural_net executable"
+)
+
+# Check if compilation was successful
+add_custom_command(TARGET neural_net
+    POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E echo "Compilation successful."
+)
+add_executable(neural_net ${SOURCES})
+
+# Custom target for building
+add_custom_target(build_all ALL
+    COMMAND ${CMAKE_COMMAND} --build ${CMAKE_BINARY_DIR}
+    COMMENT "Building the neural_net executable"
+)
+
+# Check if compilation was successful
+add_custom_command(TARGET neural_net
+    POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E echo "Compilation successful."
+)
