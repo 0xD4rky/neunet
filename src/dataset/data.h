@@ -1,29 +1,18 @@
-#pragma once
+#ifndef DATA_H
+#define DATA_H
 
 #include <vector>
+#include <string>
 
-enum Datatype{
-    TRAIN,
-    TEST
-};
-// for accessing the data using test or train
+class Data {
+public:
+    std::vector<std::vector<double>> inputs;
+    std::vector<double> outputs;
 
-class Dataset{
-    public:
-        Dataset(string filename);
-        ~Dataset ();
-
-        const std::vector<const std::vector<double>*>& In(Datatype d) const;
-        const std::vector<const std::vector<double>*>& Out(Datatype d) const; //accessors pointing to vectors
-        void split(double ptrain);
-
-    private:
-        std::vector<std::vector<double>> ins;
-        std::vector<std::vector<double>> outs;
-        std::vector<const std::vector<double>*> train_ins;
-        std::vector<const std::vector<double>*> train_outs;
-        std::vector<const std::vector<double>*> test_ins;
-        std::vector<const std::vector<double>*> test_outs;
-
+    Data(const std::string& filepath);
+    void load_data(const std::string& filepath);
+    void normalize();
+    std::pair<std::vector<double>, double> get_item(int index);
 };
 
+#endif
