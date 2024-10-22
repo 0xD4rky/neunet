@@ -1,18 +1,24 @@
-#ifndef DATA_H
-#define DATA_H
-
+#pragma once
 #include <vector>
 #include <string>
 
-class Data {
+class Dataset {
 public:
-    std::vector<std::vector<double>> inputs;
-    std::vector<double> outputs;
-
-    Data(const std::string& filepath);
-    void load_data(const std::string& filepath);
-    void normalize();
-    std::pair<std::vector<double>, double> get_item(int index);
+    Dataset(const std::string& filename);
+    void loadData();
+    void splitTrainTest(float trainRatio);
+    std::vector<std::vector<double>> getTrainFeatures() const;
+    std::vector<double> getTrainLabels() const;
+    std::vector<std::vector<double>> getTestFeatures() const;
+    std::vector<double> getTestLabels() const;
+    void shuffle();
+    
+private:
+    std::string filename_;
+    std::vector<std::vector<double>> features_;
+    std::vector<double> labels_;
+    std::vector<std::vector<double>> trainFeatures_;
+    std::vector<double> trainLabels_;
+    std::vector<std::vector<double>> testFeatures_;
+    std::vector<double> testLabels_;
 };
-
-#endif
