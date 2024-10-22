@@ -1,54 +1,29 @@
 #include "data.h"
 #include <fstream>
+#include <sstream>
+#include <random>
 #include <algorithm>
-#include "../misc/functions.h"
 
-Dataset::Dataset(string filename){
-    std::ifstream infile(filename);
-    std::vector<double> line;
-    double a;
-    while(!infile.eof()){
-        infile >> a;
-        line.push_back(a);
+Dataset::Dataset(const std::string& filename) : filename_(filename) {}
+
+void Dataset::loadData() {
+    std::ifstream file(filename_);
+    std::string line;
+    
+    while (std::getline(file, line)) {
+        std::stringstream ss(line);
+        std::vector<double> row;
+        double value;
         
-        if(infile.get() == '\n'){
-            double out = line[line.size()-1];
-            line.pop_back();
-
-            ins.push_back(line);
-            outs.push_back({out});
-            line.clear();
+        // Read first two columns as features
+        for (int i = 0; i < 2; i++) {
+            ss >> value;
+            row.push_back(value);
         }
+        features_.push_back(row);
+        
+        // Read third column as label
+        ss >> value;
+        labels_.push_back(value);
     }
 }
-
-Dataset::~Dataset(){}
-
-void Dataset::split(double ptrain){
-    for(size_t i =0;i<ins.size();i++){
-        if(random(0,1) < ptrain){
-            train_ins.push_back(&ins[i]);
-            train_outs.push_back(&outs[i]);
-        }
-        else
-		{
-			test_ins.push_back(&ins[i]);
-			test_outs.push_back(&outs[i]);
-		}
-    }
-}
-
-const vector<const vector<double>*>& Dataset::In(Datatype d) const
-{ 
-	if(d == Datatype::TRAIN)
-		return train_ins;
-	return test_ins;
-}
-
-const vector<const vector<double>*>& Dataset::Out(Datatype d) const
-{
-	if (d == Datatype::TRAIN)
-		return train_outs;
-	return test_outs;
-}
-
