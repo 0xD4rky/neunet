@@ -27,3 +27,14 @@ void Dataset::loadData() {
         labels_.push_back(value);
     }
 }
+
+void Dataset::splitTrainTest(float trainRatio) {
+    size_t trainSize = static_cast<size_t>(features_.size() * trainRatio);
+    
+    trainFeatures_.assign(features_.begin(), features_.begin() + trainSize);
+    trainLabels_.assign(labels_.begin(), labels_.begin() + trainSize);
+    
+    testFeatures_.assign(features_.begin() + trainSize, features_.end());
+    testLabels_.assign(labels_.begin() + trainSize, labels_.end());
+}
+
