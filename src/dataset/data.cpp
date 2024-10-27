@@ -38,3 +38,25 @@ void Dataset::splitTrainTest(float trainRatio) {
     testLabels_.assign(labels_.begin() + trainSize, labels_.end());
 }
 
+void Dataset::shuffle() {
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    
+    std::vector<size_t> indices(features_.size());
+    for (size_t i = 0; i < indices.size(); i++) {
+        indices[i] = i;
+    }
+    std::shuffle(indices.begin(), indices.end(), gen);
+    
+    std::vector<std::vector<double>> shuffledFeatures;
+    std::vector<double> shuffledLabels;
+    
+    for (size_t idx : indices) {
+        shuffledFeatures.push_back(features_[idx]);
+        shuffledLabels.push_back(labels_[idx]);
+    }
+    
+    features_ = shuffledFeatures;
+    labels_ = shuffledLabels;
+    // adding labels to the network
+}
