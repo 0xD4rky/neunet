@@ -14,3 +14,12 @@ Neuron::Neuron(size_t numInputs) {
     }
     bias_ = dist(gen) * scale;
 }
+
+double Neuron::activate(const std::vector<double>& inputs) {
+    double sum = bias_;
+    for (size_t i = 0; i < inputs.size(); i++) {
+        sum += inputs[i] * weights_[i];
+    }
+    output_ = utils::sigmoid(sum);
+    return output_;
+}
