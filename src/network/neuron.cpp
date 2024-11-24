@@ -23,3 +23,11 @@ double Neuron::activate(const std::vector<double>& inputs) {
     output_ = utils::sigmoid(sum);
     return output_;
 }
+
+void Neuron::updateWeights(const std::vector<double>& inputs, 
+                          double delta, double learningRate) {
+    for (size_t i = 0; i < weights_.size(); i++) {
+        weights_[i] += learningRate * delta * inputs[i];
+    }
+    bias_ += learningRate * delta;
+}
