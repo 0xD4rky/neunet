@@ -8,4 +8,6 @@ public:
     void updateWeights(const std::vector<double>& inputs, double delta, double learningRate);
     std::vector<double> getWeights() const;
     double getDelta() const;
-    void setDelta(double delta); 
+    void setDelta(double delta);
+    
+private:
