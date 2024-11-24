@@ -11,3 +11,8 @@ public:
     void setDelta(double delta);
     
 private:
+std::vector<double> weights_;
+    double bias_;
+    double output_;
+    double delta_;
+};
