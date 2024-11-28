@@ -1,26 +1,19 @@
-#ifndef NET_H
-#define NET_H
-
-#include <vector>
+#pragma once
 #include "layer.h"
+#include <vector>
 
-class Net{
-
-    public:
-        Net(const std::vector<int>& layer_sizes);
-        std::vector<double> forward(const std::vector<double>& inputs);
-        void train(const std::vector<std::vector<double>>& data, 
-               const std::vector<int>& labels, 
-               int epochs, double learning_rate);
-        double predict(const std::vector<double>& inputs);
-
-    private:
-        std::vector<Layer> layers;
-        void backpropagate(const std::vector<double>& expected);
-        double calculate_loss(const std::vector<double>& output, const std::vector<double>& target) const;
-
+class NeuralNetwork {
+public:
+    NeuralNetwork(const std::vector<size_t>& topology, double learningRate);
+    void train(const std::vector<std::vector<double>>& features, 
+              const std::vector<double>& labels,
+              size_t epochs);
+    std::vector<double> predict(const std::vector<double>& inputs);
+    double validate(const std::vector<std::vector<double>>& features,
+                   const std::vector<double>& labels);
+    
+private:
+    std::vector<Layer> layers_;
+    double learningRate_;
+    void backpropagate(const std::vector<double>& expected);
 };
-
-
-
-#endif
